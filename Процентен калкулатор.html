@@ -1,0 +1,124 @@
+<!DOCTYPE html><button onclick="clearInput()">Изчисти</button>
+<button onclick="copyResults()">Копирай резултатите</button>
+
+
+<html lang="bg">
+<head><link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Процентен Калкулатор</title>
+    <style>
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #555;
+    }
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        #results div {
+            background-color: #1e1e1e;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .total {
+    color: #4CAF50; /* ярко зелено за ОБЩО */
+    font-weight: bold;
+}
+.markup {
+    color: #FFA726; /* оранжево за НАДЦЕНКА */
+    font-weight: bold;
+}
+.percent {
+    color: #42A5F5; /* синьо */
+    font-weight: bold;
+}
+
+    </style>
+    </head>
+<body>
+    <h1>Калкулатор за процентно увеличение</h1>
+    <input type="number" id="amount" placeholder="Въведи сума">
+    <div id="results"></div>
+<<script>
+    
+        for (let i = 10; i <= 100; i += 5) {
+            const increased = (base * (1 + i / 100)).toFixed(2);
+            const div = document.createElement("div");
+            div.innerText = `Сума + ${i}% = ${increased} лв.`;
+            results.appendChild(div);
+        }
+    }
+
+    // Изчислявай автоматично при писане
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("amount").addEventListener("input", calculate);
+    });
+</script>
+<script>
+    function calculate() {
+    const base = parseFloat(document.getElementById("amount").value);
+    const results = document.getElementById("results");
+    results.innerHTML = "";
+
+    if (isNaN(base)) return;
+
+    for (let i = 10; i <= 100; i += 5) {
+        const increased = (base * (1 + i / 100)).toFixed(2);
+        const markup = (base * (i / 100)).toFixed(2);
+        const div = document.createElement("div");
+        div.innerHTML = `<span class="percent">+${i}%</span> ➜ <span class="total">Общо: ${increased} лв.</span> ➜ <span class="markup">Надценка: ${markup} лв.</span>`;
+        results.appendChild(div);
+    }
+}
+
+
+    function clearInput() {
+        document.getElementById("amount").value = "";
+        document.getElementById("results").innerHTML = "";
+    }
+
+    function copyResults() {
+        const text = document.getElementById("results").innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Резултатите са копирани!");
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("amount").addEventListener("input", calculate);
+    });
+</script>
+
+
+
